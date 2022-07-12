@@ -4,19 +4,21 @@
     <span class="deliver-address">Neufmaison 7332</span>
 </div>
 <mat-form-field class="category" appearance="outline">
-    <input
-      matInput 
-      type="text" 
-      [matAutocomplete]="auto"/>
-      <mat-label>Categorie</mat-label>
+    <input matInput type="text" [matAutocomplete]="auto" />
+    <mat-label>Categorie</mat-label>
     <mat-autocomplete #auto="matAutocomplete">
         <mat-option *ngFor="let option of options" [value]="option">
             {{option}}
         </mat-option>
     </mat-autocomplete>
 </mat-form-field>
-<mat-form-field class="search" appearance="outline">    
+<mat-form-field class="search" appearance="outline">
     <mat-label>Rechercher</mat-label>
-    <input matInput >
-    <mat-icon matSuffix>mode_edit</mat-icon>
+    <input matInput>
+
 </mat-form-field>
+<div class="search-btn-container">
+    <button class="search-btn" matSuffix mat-icon-button>
+        <mat-icon>search</mat-icon>
+    </button>
+</div>

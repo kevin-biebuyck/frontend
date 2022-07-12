@@ -57,7 +57,8 @@
 .search {
     width: calc(100% - 1000px);
     ::ng-deep {
-        .mat-form-field-outline-start {
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-end {
             border-radius: 0;
         }
         .mat-form-field-outline-start,
@@ -65,5 +66,25 @@
         .mat-form-field-outline-end {
             background-color: white;
         }
+        .mat-form-field-suffix{
+            top: 0px;
+
+        }
     }
+}
+.search-btn-container{
+    display: inline-block;
+    position: fixed;
+    .search-btn{
+        position: relative;
+        top:19px;
+        cursor: pointer;
+        height: 35px;
+        background-color: #febd69;
+        border: 0;
+        &:hover{
+            background-color: #f3a847;
+        }
+    }
+
 }
