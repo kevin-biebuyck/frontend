@@ -1,6 +1,9 @@
-<ng-container *ngIf="products$ | async">
-    <div class="product-container" *ngFor="let product of products$ | async">
-        {{product.name}}
+<ng-container *ngIf="productsPaginated$ | async as productsPaginated">
+    <div class="product-container" *ngFor="let product of productsPaginated.items">
+        <h4>{{product.name}}</h4>
+        <img [src]="product.pictureUrl"/>
+        <span class="description">{{product.description}}</span>
+        <span class="price">{{product.price | currency:'EUR'}}</span>
     </div>
     <div class="product-container blank" ></div>
     <div class="product-container blank" ></div>
@@ -11,4 +14,13 @@
     <div class="product-container blank" ></div>
     <div class="product-container blank" ></div>
     <div class="product-container blank" ></div>
+    <mat-paginator 
+                  #paginator
+                  (page)="applyPagination($event)"
+                  [length]="productsPaginated.totalItems"
+                  [pageSize]="productsPaginated.pageSize"
+                  [pageSizeOptions]="[5, 10, 25, 100]"
+                  aria-label="Select page">
+    </mat-paginator>
+    {{paginator.pageIndex | json}}
 </ng-container>

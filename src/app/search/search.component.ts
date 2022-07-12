@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { map, shareReplay, switchMap } from 'rxjs/operators';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import { map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { ApiClientService } from '../shared/api-client.service';
 
 @Component({
@@ -10,16 +12,25 @@ import { ApiClientService } from '../shared/api-client.service';
 })
 export class SearchComponent implements OnInit {
 
-  page = 1;
-  pageSize = 50;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   query$ = this.route.queryParams.pipe(map(p => p['q']));
-  products$ = this.query$.pipe(switchMap(query => this.api.searchProducts(query, this.page, this.pageSize)), shareReplay());
+  page$ = this.route.queryParams.pipe(map(p => p['page'] ? p['page'] : 1));
+  pageSize$ = this.route.queryParams.pipe(map(p => p['pageSize'] ? p['pageSize'] : 50));
+  productsPaginated$ = combineLatest([this.query$, this.page$, this.pageSize$])
+    .pipe(
+      switchMap(([query, page, pageSize]) => this.api.searchProducts(query, page, pageSize)),
+      tap(paginated => setTimeout(() => this.paginator.pageIndex = paginated.page - 1, 0)),
+      shareReplay());
 
-  constructor(private route: ActivatedRoute, private api: ApiClientService) {
+  constructor(private route: ActivatedRoute, private api: ApiClientService, private router: Router) {
   }
 
   ngOnInit(): void {
+  }
+  applyPagination(pageEvent: PageEvent): void {
+    console.log(pageEvent);
+    this.router.navigateByUrl(`/search?q=${this.route.snapshot.queryParams['q']}&page=${pageEvent.pageIndex + 1}&pageSize=${pageEvent.pageSize}`)
   }
 
 }
