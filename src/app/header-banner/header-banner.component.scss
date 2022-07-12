@@ -1,0 +1,23 @@
+:host {
+    background-color: rgb(35, 47, 62);
+    display: block;
+    padding: 10px 15px;
+    color: white;
+}
+.logo {
+    width: 150px;
+}
+.delivery {
+    margin-left: 20px;
+    display: inline-block;
+    vertical-align: top;
+
+    .deliver-to {
+        color: #afafaf;
+        display: block;
+        margin-top:4px;
+    }
+    .deliver-address {
+        font-weight: bold;
+    }
+}
