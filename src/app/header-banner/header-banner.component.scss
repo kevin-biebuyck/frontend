@@ -3,21 +3,67 @@
     display: block;
     padding: 10px 15px;
     color: white;
+    ::ng-deep {
+        .mat-form-field-outline-start {
+            border-radius: 0;
+        }
+        .mat-form-field-infix {
+            padding: 5px;
+        }
+        .mat-form-field-label {
+            top: initial;
+            margin-top: 0;
+        }
+        .mat-form-field-appearance-outline  .mat-form-field-wrapper{
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
 }
 .logo {
     width: 150px;
 }
 .delivery {
     margin-left: 20px;
+    margin-right: 20px;
     display: inline-block;
     vertical-align: top;
 
     .deliver-to {
         color: #afafaf;
         display: block;
-        margin-top:4px;
+        margin-top: 4px;
     }
     .deliver-address {
         font-weight: bold;
+    }
+}
+.category {
+    ::ng-deep {
+        .mat-form-field-outline-end {
+            border-radius: 0;
+        }
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-gap,
+        .mat-form-field-outline-end {
+            background-color: rgb(218, 218, 218);
+        }
+    }
+    mat-label {
+        color: rgb(15, 17, 17);
+    }
+}
+
+.search {
+    width: calc(100% - 1000px);
+    ::ng-deep {
+        .mat-form-field-outline-start {
+            border-radius: 0;
+        }
+        .mat-form-field-outline-start,
+        .mat-form-field-outline-gap,
+        .mat-form-field-outline-end {
+            background-color: white;
+        }
     }
 }

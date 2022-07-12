@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header-banner.component.scss']
 })
 export class HeaderBannerComponent implements OnInit {
+  options = ["test 1", "test2"];
 
   constructor() { }
 
