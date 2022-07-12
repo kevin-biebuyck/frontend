@@ -1,4 +1,14 @@
-<p>search works!</p>
-
-{{query$ | async}}
-{{products$ | async | json}}
+<ng-container *ngIf="products$ | async">
+    <div class="product-container" *ngFor="let product of products$ | async">
+        {{product.name}}
+    </div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+    <div class="product-container blank" ></div>
+</ng-container>

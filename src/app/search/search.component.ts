@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { map, switchMap } from 'rxjs/operators';
+import { map, shareReplay, switchMap } from 'rxjs/operators';
 import { ApiClientService } from '../shared/api-client.service';
 
 @Component({
@@ -11,10 +11,10 @@ import { ApiClientService } from '../shared/api-client.service';
 export class SearchComponent implements OnInit {
 
   page = 1;
-  pageSize = 3;
+  pageSize = 50;
 
   query$ = this.route.queryParams.pipe(map(p => p['q']));
-  products$ = this.query$.pipe(switchMap(query => this.api.searchProducts(query, this.page, this.pageSize)));
+  products$ = this.query$.pipe(switchMap(query => this.api.searchProducts(query, this.page, this.pageSize)), shareReplay());
 
   constructor(private route: ActivatedRoute, private api: ApiClientService) {
   }
