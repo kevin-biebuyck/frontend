@@ -14,6 +14,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatIconModule } from '@angular/material/icon';
 import { SearchComponent } from './search/search.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { SearchComponent } from './search/search.component';
     MatAutocompleteModule,
     MatIconModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
