@@ -14,11 +14,11 @@
 </mat-form-field>
 <mat-form-field class="search" appearance="outline">
     <mat-label>Rechercher</mat-label>
-    <input matInput>
+        <input matInput [(ngModel)]="searchQuery">
 
 </mat-form-field>
 <div class="search-btn-container">
-    <button class="search-btn" matSuffix mat-icon-button>
+    <button class="search-btn" matSuffix mat-icon-button [routerLink]="'/search'" [queryParams]="{q: searchQuery}">
         <mat-icon>search</mat-icon>
     </button>
 </div>

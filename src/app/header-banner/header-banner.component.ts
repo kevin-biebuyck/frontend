@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderBannerComponent implements OnInit {
   options = ["test 1", "test2"];
+  searchQuery = "";
 
   constructor() { }
 
